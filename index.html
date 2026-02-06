@@ -1,66 +1,80 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
-  <title>Happy Rose Day ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Rose Day 🌹</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body{
-      background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-family: Arial, sans-serif;
-      text-align:center;
-      color:white;
-    }
+    body {
+      background: linear-gradient(135deg, #ffe4e6, #fecdd3, #fbcfe8);
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+}
 
-    .card{
-      background: rgba(255,255,255,0.2);
-      padding:40px;
-      border-radius:20px;
-      backdrop-filter: blur(10px);
-      box-shadow:0 0 25px rgba(0,0,0,0.2);
-    }
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
+}
 
-    h1{
-      font-size:40px;
-    }
+.fade-in {
+  animation: fadeIn 1.2s ease-in-out forwards;
+}
 
-    .rose{
-      font-size:70px;
-      animation: float 2s infinite ease-in-out;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-
-    button{
-      padding:12px 25px;
-      border:none;
-      border-radius:10px;
-      font-size:18px;
-      background:red;
-      color:white;
-      cursor:pointer;
-    }
   </style>
 </head>
+<body class="min-h-screen flex items-center justify-center p-6">  <!-- Card -->  <div class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-10 max-w-md text-center relative"><h1 class="text-4xl font-bold mb-3">🌹 Happy Rose Day 🌹</h1>
 
-<body>
+<p class="text-lg mb-2 font-semibold">For <span class="text-pink-600">YourNameHere</span> ❤️</p>
 
-<div class="card">
-  <div class="rose">🌹</div>
-  <h1>Happy Rose Day</h1>
-  <h2>My Dear ❤️</h2>
-  <p>You make every day special.  
-  This rose is just for you 🌹</p>
+<p class="text-base mb-6">
+  Like a rose, you make my life beautiful and full of fragrance.
+  Thank you for being my happiness every day.
+</p>
 
-  <button onclick="alert('I like you a lot ❤️ Happy Rose Day!')">
-    Click Me
-  </button>
+<button onclick="showMessage()"
+  class="bg-pink-500 hover:bg-pink-600 active:scale-95 text-white px-6 py-3 rounded-2xl shadow-lg transition">
+  Tap for Surprise 💌
+</button>
+
+<div id="message" class="hidden mt-6 text-lg font-semibold">
+  <p class="fade-in">You are my smile, my peace, my favorite person. 🌸</p>
+  <p class="fade-in mt-2">Will you always be my rose? ❤️</p>
 </div>
 
-</body>
+  </div>  <!-- Optional music (replace link if you want another song) --><audio id="bgMusic" src="" loop></audio>
+
+  <script>
+    function showMessage() {
+      document.getElementById('message').classList.remove('hidden');
+      const music = document.getElementById('bgMusic');
+      if (music.src) music.play();
+    }
+
+    // floating hearts generator
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '💗';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 300);
+  </script></body>
 </html>
